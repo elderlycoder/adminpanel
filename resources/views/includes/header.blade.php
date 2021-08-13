@@ -14,12 +14,7 @@
       </div>
       <div>
          <ul class="list-unstyled d-flex">
-            <li class="ms-3">
-               <a href="{{route('products-list')}}">Товары</a>
-            </li>
-            <li class="ms-3">
-               <a href="{{route('categories-list')}}">Услуги</a>
-            </li>
+            <li class="ms-3"><a href="{{route('products-list')}}">Товары</a> </li>
             <li class="ms-3">
                <a href="{{route('login')}}">Вход</a>
             </li>

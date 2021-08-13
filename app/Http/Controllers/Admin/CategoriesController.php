@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Models\VmCategory;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -18,24 +19,12 @@ class CategoriesController extends Controller
         return view('admin.categories.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         Category::create($request->all());
         return redirect()->route('categories.index');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $category = Category::with('subcategories')->findOrFail( $id );
@@ -74,5 +63,18 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function copyCategories(){
+        
+        $vmcategory = VmCategory::where('metakey', 'usluga')->get();
+        $category = Category::pluck('vm_id')->all();
+        
+        foreach($vmcategory as $data){
+            if(!in_array($data->virtuemart_category_id, $category)){
+            Category::insert (['title' => $data->category_name, 'slug'=>$data->slug, 'vm_id'=>$data->virtuemart_category_id]);
+        }}
+        $categories = Category::all();
+        return view('admin.categories.index', ['categories' => $categories]);
     }
 }

@@ -1,11 +1,11 @@
-@extends('admin.layout')
+@extends('layout')
+@section('page-title', 'Админка | Главная')
 @section('content')
 <div class="content-wrapper">
    <!-- Content Header (Page header) -->
    <section class="content-header">
    <h1>
       Привет! Это админка
-      <small>приятные слова..</small>
    </h1>
    </section>
 

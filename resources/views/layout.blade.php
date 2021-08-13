@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<title>AdminLTE 2 | Blank Page</title>
+<title>@yield('page-title', 'А это по умолчанию')</title>
 <!-- Tell the browser to be responsive to screen width -->
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <!-- Bootstrap 3.3.6 -->
@@ -19,7 +19,7 @@
    <!-- mini logo for sidebar mini 50x50 pixels -->
    <span class="logo-mini"><b>A</b>LT</span>
    <!-- logo for regular state and mobile devices -->
-   <span class="logo-lg"><b>Admin</b>LTE</span>
+   <span class="logo-lg"><b>ОКЕЙ-АВТО</b></span>
    </a>
    <!-- Header Navbar: style can be found in header.less -->
    <nav class="navbar navbar-static-top">
@@ -195,14 +195,15 @@
    <!-- /.search form -->
    <!-- sidebar menu: : style can be found in sidebar.less -->
    <ul class="sidebar-menu">
-      <li class="header">MAIN NAVIGATION</li>
+      <li class="header">МЕНЮ</li>
       <li class="treeview">
          <a href="#">
-         <i class="fa fa-dashboard"></i> <span>Админ-панель</span>
+         <!-- <i class="fa fa-dashboard"></i><span>Админ-панель</span> -->
          </a>
       </li>
       <li><a href="#"><i class="fa fa-sticky-note-o"></i> <span>Посты</span></a></li>
       <li><a href="{{route('categories.index')}}"><i class="fa fa-list-ul"></i> <span>Категории</span></a></li>
+      <li><a href="{{route('vmcategories-list')}}"><i class="fa fa-list-ul"></i> <span>VM Категории</span></a></li>
       <li><a href="#"><i class="fa fa-tags"></i> <span>Теги</span></a></li>
       <li>
          <a href="#">
@@ -429,7 +430,7 @@
 </div>
 <!-- ./wrapper -->
 <script src="/js/admin.js"></script>
-@yield('script')
+<!-- @yield('script') -->
 </body>
 
 <!-- Mirrored from almsaeedstudio.com/themes/AdminLTE/pages/examples/blank.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 18 Dec 2016 15:13:35 GMT -->

@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('layout')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -6,8 +6,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Blank page
-        <small>it all starts here</small>
+        Выводим категории
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -22,18 +21,19 @@
       <!-- Default box -->
       <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Листинг сущности</h3>
+              <h3 class="box-title">Категории Админ панели</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
               <div class="form-group">
-                <a href="{{route('categories.create')}}" class="btn btn-success">Добавить</a>
+                <a href="#" class="btn btn-success">Добавить</a>
               </div>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>ID</th>
                   <th>Название</th>
+                  <th>Slug</th>
                   <th>Подкатегории</th>
                   <th>VM ID</th>
                 </tr>
@@ -43,6 +43,7 @@
                 <tr>
                   <td>{{$category->id}}</td>
                   <td><a href="{{route('categories.show', $category->id)}}">{{$category->title}}</a></td>
+                  <td>{{$category->slug}}</td>
                   <td>1</td>
                   <td>{{$category->vm_id}}</td>
                    
@@ -61,10 +62,10 @@
   </div>
   <!-- /.content-wrapper -->
 @endsection
-@section('script')
+<!-- @section('script')
 <script type="text/javascript">
  $(document).ready(function(){
  alert(jQuery.fn.jquery);
  });
  </script>
-@endsection
+@endsection -->
