@@ -1,4 +1,8 @@
 {
-   "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace",
-   "editor.fontLigatures": true
+   "editor.fontFamily": "hack, Fira Code, Consolas, 'Courier New', monospace",
+   "editor.fontLigatures": true,
+   "editor.fontSize": 16,
+   "editor.tabSize": 1,
+   "editor.fontWeight": 500,
+   "editor.useTabStops": false
 }

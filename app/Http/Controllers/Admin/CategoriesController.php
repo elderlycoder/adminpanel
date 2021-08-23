@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 use App\Models\VmCategory;
 use App\Models\Category;
+use App\Models\Subcategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -11,7 +12,8 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::all();
-        return view('admin.categories.index', ['categories' => $categories]);
+        $subcategories = Subcategory::all();
+        return view('admin.categories.index', compact('categories', 'subcategories'));
     }
 
     public function create()// просто возвращаем вид с формой для занесения данных
@@ -31,35 +33,16 @@ class CategoriesController extends Controller
     return view('admin.categories.show', ['category' => $category ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
@@ -67,10 +50,13 @@ class CategoriesController extends Controller
 
     public function copyCategories(){
         
-        $vmcategory = VmCategory::where('metakey', 'usluga')->get();
+        $vmcategory = VmCategory::where('parent_id', '>', 0)->get();
+        //dd($vmcategory);
         $category = Category::pluck('vm_id')->all();
+        //$subcategory = 
         
         foreach($vmcategory as $data){
+            //если внутри массива $category нет элемента с совпадающего с $data->virtuemart_category_id
             if(!in_array($data->virtuemart_category_id, $category)){
             Category::insert (['title' => $data->category_name, 'slug'=>$data->slug, 'vm_id'=>$data->virtuemart_category_id]);
         }}

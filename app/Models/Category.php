@@ -10,7 +10,7 @@ class Category extends Model
     //use HasFactory;
 
     protected $fillable = ['title', 'slug'];
-    public function subcategories(){
-        return $this->hasMany(Subcategory::class);
+    public function subcategories(){ //название метода во множественном числе
+        return $this->hasMany(Subcategory::class); //hasMany - имеет много
     }
 }

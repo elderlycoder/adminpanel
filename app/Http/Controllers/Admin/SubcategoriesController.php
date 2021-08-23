@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 use App\Models\Subcategory;
+use App\Models\VmCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,11 +15,6 @@ class SubcategoriesController extends Controller
         return view('admin.subcategories.index', ['subcategories' => $subcategories]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
@@ -78,5 +74,19 @@ class SubcategoriesController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function copyCategories(){
+        
+        $vmcategory = VmCategory::where('parent_id', '>', 0)->get();
+        //dd($vmcategory);
+        $subcategory = Subcategory::pluck('vm_id')->all(); 
+        
+        foreach($vmcategory as $data){
+            //если внутри массива $category нет элемента с совпадающего с $data->virtuemart_category_id
+            if(!in_array($data->virtuemart_category_id, $subcategory)){
+            Subcategory::insert (['title' => $data->category_name, 'slug'=>$data->slug, 'vm_id'=>$data->virtuemart_category_id, 'category_id'=>$data->parent_id]);
+        }}
+        $subcategories = Subcategory::all();
+        return view('admin.categories.index', ['subcategories' => $subcategories]);
     }
 }

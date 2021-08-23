@@ -15,7 +15,7 @@
 
 <header class="main-header">
    <!-- Logo -->
-   <a href="../../index2.html" class="logo">
+   <a href="/" class="logo">
    <!-- mini logo for sidebar mini 50x50 pixels -->
    <span class="logo-mini"><b>A</b>LT</span>
    <!-- logo for regular state and mobile devices -->
@@ -201,8 +201,7 @@
          <!-- <i class="fa fa-dashboard"></i><span>Админ-панель</span> -->
          </a>
       </li>
-      <li><a href="#"><i class="fa fa-sticky-note-o"></i> <span>Посты</span></a></li>
-      <li><a href="{{route('categories.index')}}"><i class="fa fa-list-ul"></i> <span>Категории</span></a></li>
+      <li><a href="/ceo/categories"><i class="fa fa-list-ul"></i> <span>Категории</span></a></li>
       <li><a href="{{route('vmcategories-list')}}"><i class="fa fa-list-ul"></i> <span>VM Категории</span></a></li>
       <li><a href="#"><i class="fa fa-tags"></i> <span>Теги</span></a></li>
       <li>

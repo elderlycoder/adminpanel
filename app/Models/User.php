@@ -11,17 +11,21 @@ class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $fillable = ['name', 'email', 'password'];
 
+    public static function add($fields){
+        $user = new static;
+        $user->fill($fields);
+        $user->save();
+
+        return $user; 
+    }
+
+    public function edit($fields){
+        $this->fill($fields); //name,email
+        
+        $this->save();
+    }
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -40,4 +44,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function generatePassword($password){
+        if($password != null){
+            $this->password = bcrypt($password);
+            $this->save();
+        }
+    }
 }

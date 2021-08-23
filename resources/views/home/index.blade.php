@@ -1,4 +1,4 @@
-@extends('layouts.base')
+@extends('layout2')
 
 @section('page-title', 'Страница входа')
 

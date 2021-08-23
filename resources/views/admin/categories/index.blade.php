@@ -1,12 +1,12 @@
 @extends('layout')
-
+@section('page-title', 'Вывод категорий')
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Выводим категории
+        Выводим категории и подкатегории
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -26,8 +26,11 @@
             <!-- /.box-header -->
             <div class="box-body">
               <div class="form-group">
-                <a href="#" class="btn btn-success">Добавить</a>
+                <a href="#" class="btn btn-success">ТО</a>
+                <a href="#" class="btn btn-success">Ходовая</a>
+                <a href="#" class="btn btn-success">Рулевое</a>
               </div>
+              <h2>Подкатегории</h2>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -39,13 +42,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($categories as $category)
+                @foreach($subcategories as $subcategory)
                 <tr>
-                  <td>{{$category->id}}</td>
-                  <td><a href="{{route('categories.show', $category->id)}}">{{$category->title}}</a></td>
-                  <td>{{$category->slug}}</td>
+                  <td>{{$subcategory->id}}</td>
+                  <td><a href="{{route('subcategories.show', $subcategory->id)}}">{{$subcategory->title}}</a></td>
+                  <td>{{$subcategory->slug}}</td>
                   <td>1</td>
-                  <td>{{$category->vm_id}}</td>
+                  <td>{{$subcategory->vm_id}}</td>
                    
                 </tr>
                 @endforeach
