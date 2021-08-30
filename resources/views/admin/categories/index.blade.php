@@ -26,9 +26,9 @@
             <!-- /.box-header -->
             <div class="box-body">
               <div class="form-group">
-                <a href="#" class="btn btn-success">ТО</a>
-                <a href="#" class="btn btn-success">Ходовая</a>
-                <a href="#" class="btn btn-success">Рулевое</a>
+              @foreach($categories as $category)
+              <a href="{{route('categories.show', $category->id)}}" class="btn btn-success">{{$category->title}}</a>
+              @endforeach
               </div>
               <h2>Подкатегории</h2>
               <table id="example1" class="table table-bordered table-striped">
@@ -37,8 +37,9 @@
                   <th>ID</th>
                   <th>Название</th>
                   <th>Slug</th>
-                  <th>Подкатегории</th>
+                  <th>Категория</th>
                   <th>VM ID</th>
+                  <th>Действия</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -47,8 +48,9 @@
                   <td>{{$subcategory->id}}</td>
                   <td><a href="{{route('subcategories.show', $subcategory->id)}}">{{$subcategory->title}}</a></td>
                   <td>{{$subcategory->slug}}</td>
-                  <td>1</td>
+                  <td>{{$subcategory->getCategoryTitle()}}</td>
                   <td>{{$subcategory->vm_id}}</td>
+                  <td><a href="{{route('categories.edit', $subcategory->vm_id)}}" class="fa fa-pencil"></a></td>
                    
                 </tr>
                 @endforeach

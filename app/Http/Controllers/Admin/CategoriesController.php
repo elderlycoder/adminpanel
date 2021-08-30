@@ -35,12 +35,20 @@ class CategoriesController extends Controller
 
     public function edit($id)
     {
-        //
+        $subcategory = Subcategory::find($id);
+        return view('admin.categories.edit', compact('subcategory'));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $category = Subcategory::find($id);
+        $category->update($request->all());
+        $vmcategory = VmCategory::find($id);//where('virtuemart_category_id', 'id')->first();
+        //dd($vmcategory);
+        $vmcategory->slug = $request->slug;
+        $vmcategory->save();
+        return redirect()->route('categories.index');
+
     }
 
     public function destroy($id)
@@ -50,17 +58,42 @@ class CategoriesController extends Controller
 
     public function copyCategories(){
         
-        $vmcategory = VmCategory::where('parent_id', '>', 0)->get();
+        $vmsubcategory = VmCategory::where('parent_id', '>', 0)->get();
+        $vmcategory = VmCategory::where('parent_id', 0)->get();
         //dd($vmcategory);
         $category = Category::pluck('vm_id')->all();
-        //$subcategory = 
+        $subcategory = Subcategory::pluck('vm_id')->all();
+        
         
         foreach($vmcategory as $data){
             //если внутри массива $category нет элемента с совпадающего с $data->virtuemart_category_id
             if(!in_array($data->virtuemart_category_id, $category)){
-            Category::insert (['title' => $data->category_name, 'slug'=>$data->slug, 'vm_id'=>$data->virtuemart_category_id]);
-        }}
-        $categories = Category::all();
-        return view('admin.categories.index', ['categories' => $categories]);
+            Category::insert (['id'=>$data->virtuemart_category_id,
+                                'title' => $data->category_name,
+                                'slug'=>$data->slug,
+                                'vm_id'=>$data->virtuemart_category_id]);
+        }   
+    }
+        
+        foreach($vmsubcategory as $data){
+            //если внутри массива $category нет элемента с совпадающего с $data->virtuemart_category_id
+            if(!in_array($data->virtuemart_category_id, $subcategory)){
+            Subcategory::insert (['id'=>$data->virtuemart_category_id,
+                                    'title' => $data->category_name,
+                                    'slug'=>$data->slug,
+                                    'vm_id'=>$data->virtuemart_category_id,
+                                    'category_id'=>$data->parent_id]);
+
+        }
+        else{
+            Subcategory::where('id',$data->virtuemart_category_id)->update(
+            ['title' => $data->category_name,
+            'slug'=>$data->slug,
+            'vm_id'=>$data->virtuemart_category_id]);
+        }
+    }
+        // $categories = Category::all();
+        // return view('admin.categories.index', ['categories' => $categories]);
+        return redirect()->route('categories.index');
     }
 }

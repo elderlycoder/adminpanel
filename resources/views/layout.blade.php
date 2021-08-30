@@ -201,8 +201,10 @@
          <!-- <i class="fa fa-dashboard"></i><span>Админ-панель</span> -->
          </a>
       </li>
-      <li><a href="/ceo/categories"><i class="fa fa-list-ul"></i> <span>Категории</span></a></li>
+      <li><a href="{{route('categories.index')}}"><i class="fa fa-list-ul"></i> <span>Категории</span></a></li>
+      <!-- <li><a href="/ceo/categories"><i class="fa fa-list-ul"></i> <span>Категории</span></a></li> -->
       <li><a href="{{route('vmcategories-list')}}"><i class="fa fa-list-ul"></i> <span>VM Категории</span></a></li>
+      
       <li><a href="#"><i class="fa fa-tags"></i> <span>Теги</span></a></li>
       <li>
          <a href="#">

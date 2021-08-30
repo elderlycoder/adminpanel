@@ -1,4 +1,4 @@
-@extends ('admin.layout')
+@extends ('layout')
 
 @section ('content')
      <!-- Content Wrapper. Contains page content -->
@@ -6,8 +6,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Добавить категорию
-        <small>приятные слова..</small>
+        Редактировать категорию
       </h1>
     </section>
 
@@ -21,11 +20,15 @@
           @include ('admin.errors')
         </div>
         <div class="box-body">
-        {{Form::open(['route'=>['categories.update', $category->id], 'method'=>'put'])}}
+          {{Form::open(['route'=>['categories.update', $subcategory->id], 'method'=>'put'])}}
           <div class="col-md-6">
             <div class="form-group">
-              <label for="exampleInputEmail1">Название</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" name="title" placeholder="" value="{{$category->title}}">
+              <label for="title">Название</label>
+              <input type="text" class="form-control" id="title" name="title" value="{{$subcategory->title}}">
+            </div>
+            <div class="form-group">
+              <label for="slug">Slug</label>
+              <input type="text" class="form-control" id="slug" name="slug" value="{{$subcategory->slug}}">
             </div>
         </div>
       </div>
@@ -35,7 +38,8 @@
           <button class="btn btn-warning pull-right">Изменить</button>
         </div>
         <!-- /.box-footer-->
-        {{Form::close()}}
+        
+
       </div>
       <!-- /.box -->
 

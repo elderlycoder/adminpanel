@@ -1,5 +1,5 @@
-@extends('admin.layout')
-
+@extends('layout')
+@section('page-title', 'Вывод категории - '.$category->title)
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">

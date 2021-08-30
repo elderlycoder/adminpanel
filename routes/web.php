@@ -7,7 +7,7 @@ Route::group(['prefix'=>'ceo', 'namespace'=>'Admin', 'middleware'=>'admin'], fun
     Route::resource('/categories', 'CategoriesController');
     Route::resource('/subcategories', 'SubcategoriesController');
     Route::get('/vmcategories', 'VmCategoryController@index')->name('vmcategories-list');
-    Route::get('/copycategories', 'SubcategoriesController@copyCategories')->name('copy-categories');
+    Route::get('/copycategories', 'CategoriesController@copyCategories')->name('copy-categories');
 }); 
 
 Route::group(['middleware'=>'guest'], function(){
