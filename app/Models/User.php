@@ -7,23 +7,31 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
+
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
     protected $fillable = ['name', 'email', 'password'];
 
+    public function profile(){
+        return $this->hasOne(Profile::class);// user имеет один профиль
+    }
+    public function images(){
+        return $this->hasMany(Image::class);// user имеет много картинок
+    }
+
     public static function add($fields){
         $user = new static;
         $user->fill($fields);
         $user->save();
 
-        return $user; 
+        return $user;
     }
 
     public function edit($fields){
         $this->fill($fields); //name,email
-        
+
         $this->save();
     }
     /**
@@ -51,4 +59,10 @@ class User extends Authenticatable
             $this->save();
         }
     }
+
+    public function isAdmin() {
+        return $this->where('is_admin', '1')->exists();
+     }
+
+
 }

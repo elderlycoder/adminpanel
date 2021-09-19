@@ -18,7 +18,7 @@ class CategoriesController extends Controller
 
     public function create()// просто возвращаем вид с формой для занесения данных
     {
-        return view('admin.categories.create');
+        //return view('admin.categories.create');
     }
 
     public function store(Request $request)

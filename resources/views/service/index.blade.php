@@ -1,5 +1,5 @@
-@extends('admin.layout')
-@section('page-title', 'Админка | Главная')
+@extends('service.layout')
+@section('page-title', 'Страница пользователя')
 @section('content')
 <div class="content-wrapper">
    <!-- Content Header (Page header) -->
@@ -18,6 +18,7 @@
          <h3 class="box-title">Главная страница</h3>
       </div>
       <div class="box-body">
+         <p>view('service.index');</p>
          Текст инструкции по пользованию админкой вид - admin.subcategories.dashboard
       </div>
       <!-- /.box-body -->

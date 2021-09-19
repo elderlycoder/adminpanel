@@ -31,11 +31,14 @@ class AuthController extends Controller
     }
 
     public function login(Request $req){
-        $this->validate($req, ['email'=>'required|email', 'password'=>'required']);
-        //$res = Auth::attempt(['email'=>$req->get('email'), 'password'=>$req->get('password')]);
-        //dd($res);
+        
         if(Auth::attempt(['email'=>$req->get('email'), 'password'=>$req->get('password')])){
-            return redirect('/');
+
+            $user = auth()->user();
+            if($user->is_admin == 1){
+                return redirect('/ceo');
+            }
+            return redirect('/service');
         }
         return redirect()->back()->with('status','Неверный логин или пароль');
     }

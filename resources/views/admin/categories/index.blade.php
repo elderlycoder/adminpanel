@@ -1,13 +1,11 @@
-@extends('layout')
+@extends('admin.layout')
 @section('page-title', 'Вывод категорий')
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        Выводим категории и подкатегории
-      </h1>
+      <h1>Выводим категории и подкатегории</h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
         <li><a href="#">Examples</a></li>
@@ -21,7 +19,7 @@
       <!-- Default box -->
       <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Категории Админ панели</h3>
+              <h2 class="box-title">Категории</h2>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -46,7 +44,7 @@
                 @foreach($subcategories as $subcategory)
                 <tr>
                   <td>{{$subcategory->id}}</td>
-                  <td><a href="{{route('subcategories.show', $subcategory->id)}}">{{$subcategory->title}}</a></td>
+                  <td><{{$subcategory->title}}</></td>
                   <td>{{$subcategory->slug}}</td>
                   <td>{{$subcategory->getCategoryTitle()}}</td>
                   <td>{{$subcategory->vm_id}}</td>

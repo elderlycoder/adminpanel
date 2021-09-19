@@ -19,7 +19,7 @@
             <h3 class="text-uppercase">ВХОД</h3>
             <br>
             <form class="form-horizontal contact-form" role="form" method="post" action="/login">
-            @csrf
+            {{csrf_field()}}
                   
                   <div class="form-group">
                         <div class="col-md-12">

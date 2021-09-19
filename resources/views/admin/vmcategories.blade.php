@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('admin.layout')
 
 @section('page-title', 'Все услуги')
 
