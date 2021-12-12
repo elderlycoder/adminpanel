@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+  <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <title>@yield('page-title', 'А это по умолчанию')</title>
 <!-- Tell the browser to be responsive to screen width -->
@@ -39,9 +39,6 @@
 
 </header>
 
-<!-- =============================================== -->
-
-<!-- Left side column. contains the sidebar -->
 <aside class="main-sidebar">
    <!-- sidebar: style can be found in sidebar.less -->
    <section class="sidebar">
@@ -100,7 +97,6 @@
 <!-- /.content-wrapper -->
 <footer class="main-footer">
    <div class="pull-right hidden-xs">
-   <b>Version</b> 2.3.7
    </div>
    <strong>Copyright &copy; 2014-2021 <a href="https://okeyavto.ru/">ОКЕЙ-АВТО</a>.</strong> All rights
    reserved.

@@ -19,7 +19,7 @@
       </div>
       <div class="box-body">
          <p>view('service.index');</p>
-         Текст инструкции по пользованию админкой вид - admin.subcategories.dashboard
+          
       </div>
       <!-- /.box-body -->
       <div class="box-footer">

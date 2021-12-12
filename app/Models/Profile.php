@@ -11,7 +11,7 @@ class Profile extends Model
     protected $fillable = ['title', 'slug', 'location'];
 
     public function images(){
-        return $this->hasManyTrough(Image::class);// user имеет много картинок
+        return $this->hasMany(Image::class);// user имеет много картинок
     }
     
     public function user(){
@@ -31,9 +31,10 @@ class Profile extends Model
         $this->save();
     }
 
-    // public function setAdres($id){
-    //     if($id == null){return;}
-    //     $this->category_id = $id;
-    //     $this->save();
-    // }
+    
+    public function getId(){
+        $id = $this->id;
+        return $id;
+    }
+
 }

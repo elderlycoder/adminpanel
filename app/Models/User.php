@@ -34,11 +34,11 @@ class User extends Authenticatable
 
         $this->save();
     }
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
+    public function getProfileId(){
+        
+        return $this->profile->id;
+    }
+
     protected $hidden = [
         'password',
         'remember_token',

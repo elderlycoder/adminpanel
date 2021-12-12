@@ -41,6 +41,7 @@ class AuthController extends Controller
             return redirect('/service');
         }
         return redirect()->back()->with('status','Неверный логин или пароль');
+        
     }
 
     public function logout(){

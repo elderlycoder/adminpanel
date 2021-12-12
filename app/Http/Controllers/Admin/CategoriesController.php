@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Models\VmCategory;
 use App\Models\Category;
 use App\Models\Subcategory;
@@ -16,7 +17,7 @@ class CategoriesController extends Controller
         return view('admin.categories.index', compact('categories', 'subcategories'));
     }
 
-    public function create()// просто возвращаем вид с формой для занесения данных
+    public function create() // просто возвращаем вид с формой для занесения данных
     {
         //return view('admin.categories.create');
     }
@@ -29,8 +30,8 @@ class CategoriesController extends Controller
 
     public function show($id)
     {
-        $category = Category::with('subcategories')->findOrFail( $id );
-    return view('admin.categories.show', ['category' => $category ]);
+        $category = Category::with('subcategories')->findOrFail($id);
+        return view('admin.categories.show', ['category' => $category]);
     }
 
     public function edit($id)
@@ -43,12 +44,11 @@ class CategoriesController extends Controller
     {
         $category = Subcategory::find($id);
         $category->update($request->all());
-        $vmcategory = VmCategory::find($id);//where('virtuemart_category_id', 'id')->first();
+        $vmcategory = VmCategory::find($id); //where('virtuemart_category_id', 'id')->first();
         //dd($vmcategory);
         $vmcategory->slug = $request->slug;
         $vmcategory->save();
         return redirect()->route('categories.index');
-
     }
 
     public function destroy($id)
@@ -56,44 +56,51 @@ class CategoriesController extends Controller
         //
     }
 
-    public function copyCategories(){
-        
+    public function copyCategories()
+    {
+
         $vmsubcategory = VmCategory::where('parent_id', '>', 0)->get();
         $vmcategory = VmCategory::where('parent_id', 0)->get();
         //dd($vmcategory);
         $category = Category::pluck('vm_id')->all();
         $subcategory = Subcategory::pluck('vm_id')->all();
-        
-        
-        foreach($vmcategory as $data){
-            //если внутри массива $category нет элемента с совпадающего с $data->virtuemart_category_id
-            if(!in_array($data->virtuemart_category_id, $category)){
-            Category::insert (['id'=>$data->virtuemart_category_id,
-                                'title' => $data->category_name,
-                                'slug'=>$data->slug,
-                                'vm_id'=>$data->virtuemart_category_id]);
-        }   
-    }
-        
-        foreach($vmsubcategory as $data){
-            //если внутри массива $category нет элемента с совпадающего с $data->virtuemart_category_id
-            if(!in_array($data->virtuemart_category_id, $subcategory)){
-            Subcategory::insert (['id'=>$data->virtuemart_category_id,
-                                    'title' => $data->category_name,
-                                    'slug'=>$data->slug,
-                                    'vm_id'=>$data->virtuemart_category_id,
-                                    'category_id'=>$data->parent_id]);
 
+
+        foreach ($vmcategory as $data) {
+            //если внутри массива $category нет элемента с совпадающего с $data->virtuemart_category_id
+            if (!in_array($data->virtuemart_category_id, $category)) {
+                Category::insert([
+                    'id' => $data->virtuemart_category_id,
+                    'title' => $data->category_name,
+                    'slug' => $data->slug,
+                    'vm_id' => $data->virtuemart_category_id
+                ]);
+            }
         }
-        else{
-            Subcategory::where('id',$data->virtuemart_category_id)->update(
-            ['title' => $data->category_name,
-            'slug'=>$data->slug,
-            'vm_id'=>$data->virtuemart_category_id]);
+
+        foreach ($vmsubcategory as $data) {
+            //если внутри массива $category нет элемента с совпадающего с $data->virtuemart_category_id
+            if (!in_array($data->virtuemart_category_id, $subcategory)) {
+                Subcategory::insert([
+                    'id' => $data->virtuemart_category_id,
+                    'title' => $data->category_name,
+                    'slug' => $data->slug,
+                    'vm_id' => $data->virtuemart_category_id,
+                    'category_id' => $data->parent_id
+                ]);
+            } else {
+                Subcategory::where('id', $data->virtuemart_category_id)->update(
+                    [
+                        'title' => $data->category_name,
+                        'slug' => $data->slug,
+                        'vm_id' => $data->virtuemart_category_id
+                    ]
+                );
+            }
         }
-    }
         // $categories = Category::all();
         // return view('admin.categories.index', ['categories' => $categories]);
         return redirect()->route('categories.index');
     }
 }
+ 

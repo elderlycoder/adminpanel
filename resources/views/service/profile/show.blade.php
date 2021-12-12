@@ -37,7 +37,7 @@
       <H2>Картинки сервиса</H2>
       @foreach ($images as $image)
       <div class="form-group">
-            <img src="{{$image->getImage()}}" alt="" class="img-responsive" width="200">
+            <img src="{{$image->getImage($profile->id)}}" alt="" class="img-responsive" width="200">
          </div>
       @endforeach
       <!-- /.box-body -->

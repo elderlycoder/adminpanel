@@ -55,7 +55,7 @@
 
             <div class="form-group">
                @foreach ($images as $image)
-               <img src="{{$image->getImage()}}" alt="{{$image->title}}" class="img-responsive" width="240">
+               <img src="{{$image->getImage($profile->id)}}" alt="{{$image->title}}" class="img-responsive" width="240">
 
                {{Form::open(['route'=>['img.destroy', $image->id], 'method'=>'delete'])}}
                         <button onclick="return confirm('Уверены? ')" type="submit" class="delete">

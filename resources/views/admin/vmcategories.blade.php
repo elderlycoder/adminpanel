@@ -10,11 +10,6 @@
    <!-- Content Header (Page header) -->
    <section class="content-header">
    <h1>Категории Virtuemart</h1>
-   <ol class="breadcrumb">
-      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-      <li><a href="#">Examples</a></li>
-      <li class="active">Blank page</li>
-   </ol>
    </section>
 
    <!-- Main content -->
@@ -30,22 +25,33 @@
          <!-- /.box-header -->
          <div class="box-body">
             <div class="form-group">
-               <a href="{{route('copy-categories')}}" class="btn btn-success">Скопировать</a>
+               <a href="{{route('copy_categories')}}" class="btn btn-success">Скопировать</a>
             </div>
+             <div class="form-group">
+                 <h2>Категории</h2>
+                 @foreach($vmcategories as $category)
+                     <div class="btn btn-success">{{$category->category_name.' ('.$category->virtuemart_category_id.')'}}</div>
+                 @endforeach
+             </div>
+             <h2>Подкатегории</h2>
             <table id="example1" class="table table-bordered table-striped">
                <thead>
                <tr>
+               <th>parent_id</th>
                <th>ID</th>
+
                <th>Название</th>
                <th>Slug</th>
                <th>Действия</th>
                </tr>
                </thead>
                <tbody>
-               @foreach($category as $el)
+               @foreach($vmsubcategories as $el)
                <tr>
+
+                   <td>{{ $el->parent_id }}</td>
                <td>{{ $el->virtuemart_category_id}}</td>
-               <td>{{ $el->category_name }}</td>
+                   <td>{{ $el->category_name }}</td>
                <td>{{$el->slug}}</td>
                <td><a href="edit.html" class="fa fa-pencil"></a> <a href="#" class="fa fa-remove"></a></td>
                </tr>
@@ -61,4 +67,4 @@
    <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-@endsection 
+@endsection

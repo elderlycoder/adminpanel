@@ -35,8 +35,12 @@ class Image extends Model
         $this->save();
     }
 
-    public function getImage(){
-        $directory = auth()->user()->name;
+    // public function getImage(){
+    //     $directory = auth()->user()->name;
+    //     return '/img/'.$directory .'/'. $this->name;
+    // }
+    public function getImage($id){
+        $directory = Profile::find($id)->user->name;
         return '/img/'.$directory .'/'. $this->name;
     }
 

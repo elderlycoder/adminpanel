@@ -1,14 +1,16 @@
 @extends('admin.layout')
 @section('page-title', 'Админка | Главная')
 @section('content')
-<div class="content-wrapper">
+
+<div class="content-wrapper" style="min-height:700px;">
    <!-- Content Header (Page header) -->
    <section class="content-header">
    <h1>
       Привет! Это админка
    </h1>
+   
    </section>
-
+   <App></App>
    <!-- Main content -->
    <section class="content">
 
@@ -18,17 +20,17 @@
          <h3 class="box-title">Главная страница</h3>
       </div>
       <div class="box-body">
-         Текст инструкции по пользованию админкой вид - admin.subcategories.dashboard
+         Текст инструкции по пользованию админкой вид - admin.dashboard
       </div>
-      <!-- /.box-body -->
+      
       <div class="box-footer">
          и здесь есть место для какого-нибудь текста
       </div>
-      <!-- /.box-footer-->
+      
    </div>
-   <!-- /.box -->
+   
 
    </section>
-   <!-- /.content -->
+   
 </div>
 @endsection

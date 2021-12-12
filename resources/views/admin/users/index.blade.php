@@ -13,9 +13,9 @@
 
       <!-- Default box -->
       <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Категории Админ панели</h3>
-            </div>
+        <div class="form-group">
+          <a href="{{route('users.create')}}" class="btn btn-success">Добавить</a>
+        </div>
             <!-- /.box-header -->
             <div class="box-body">
               <h2>Пользователи</h2>
@@ -26,8 +26,9 @@
                   <th>name</th>
                   <th>email</th>
                   <!-- <th>email_verified_at</th> -->
-                  <th>password</th>
+                  
                   <th>is_admin</th>
+                  <th>Услуги</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -36,9 +37,13 @@
                   <td>{{$user->id}}</td>
                   <td>{{$user->name}}</></td>
                   <td>{{$user->email}}</td>
-                  <!-- <td>{{$user->email_verified_at}}</td> -->
                   <td>{{$user->is_admin}}</td>
-                  <td><a href="{{route('users.edit', $user->id)}}" class="fa fa-pencil"></a></td>
+                  <!-- <td>{{$user->email_verified_at}}</td> -->
+                  <td><a href="{{route('users.edit', $user->profile->id)}}" class="fa fa-pencil">5</a></td>
+
+                  
+                  
+
                    
                 </tr>
                 @endforeach

@@ -1,13 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IndexController;
+
+Route::get('/', 'IndexController');
 
 Route::group(['prefix'=>'ceo', 'namespace'=>'Admin', 'middleware'=>'admin'], function(){
     Route::get('/', 'DashboardController@index');
     Route::resource('/categories', 'CategoriesController');
-    //Route::resource('/subcategories', 'SubcategoriesController');
+    Route::resource('/products', 'ProductController');
+    Route::resource('/subcategories', 'SubcategoryController');
     Route::get('/vmcategories', 'VmCategoryController@index')->name('vmcategories-list');
-    Route::get('/copycategories', 'CategoriesController@copyCategories')->name('copy-categories');
+    Route::get('/copycategories', 'CategoriesController@copyCategories')->name('copy_categories');
     Route::resource('/users', 'UserController');
     //Route::get('/logout', 'AuthController@logout');
 });
@@ -30,7 +34,7 @@ Route::group(['middleware'=>'auth'], function(){
     Route::get('logout', 'AuthController@logout');
 });
 
-Route::view('/', 'index')->name('home');
+//Route::view('/', 'index')->name('home');
 
 
 
@@ -40,4 +44,8 @@ Route::view('/', 'index')->name('home');
 Route::get('/product/all', 'ProductController@index')->name('products-list');
 Route::get('/product/{id}', 'ProductController@getProductFromId')->name('product-from-id');
 
+Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get ('/{page}', 'IndexController')->where('page', '.*');

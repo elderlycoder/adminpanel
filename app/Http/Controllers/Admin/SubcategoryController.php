@@ -1,14 +1,18 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use App\Models\Subcategory;
 use App\Models\VmCategory;
+use App\Models\VmManufacturer;
+
 use App\Http\Controllers\Controller;
+use App\Models\Product\VMProductru;
 use Illuminate\Http\Request;
 
-class SubcategoriesController extends Controller
+class SubcategoryController extends Controller
 {
-    
+
     public function index()
     {
         $subcategories = Subcategory::all();
@@ -37,9 +41,9 @@ class SubcategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show($id){
+        $subcategory = Subcategory::findOrFail($id);        
+        return view('admin.subcategories.show', compact('subcategory'));
     }
 
     /**
@@ -49,9 +53,17 @@ class SubcategoriesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-   
+    {
+        //
+    }
+
     public function update(Request $request, $id)
-   
+    {
+        //
+    }
+
     public function destroy($id)
-    
+    {
+        //
+    }
 }
