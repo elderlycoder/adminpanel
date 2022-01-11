@@ -1,8 +1,9 @@
 {
-   "editor.fontFamily": "iosevka light, Jetbrains Mono, Andale mono, Inconsolata, Pragmata Pro Mono, iosevka light, hack, fira code, 'Courier', 'monospace'",
+   "editor.fontFamily": "fira code, iosevka light, Jetbrains Mono, Inconsolata, Pragmata Pro Mono, hack, 'Courier', 'monospace'",
    "editor.fontLigatures": true,
    "editor.tabSize": 1,
    "editor.fontWeight": 100,
    "editor.useTabStops": false,
-   "editor.bracketPairColorization.enabled": true
+   "editor.bracketPairColorization.enabled": true,
+   "editor.fontSize": 15
 }

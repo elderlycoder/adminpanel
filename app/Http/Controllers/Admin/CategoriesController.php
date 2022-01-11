@@ -55,7 +55,7 @@ class CategoriesController extends Controller
     {
         //
     }
-
+     
     public function copyCategories()
     {
 

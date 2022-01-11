@@ -1,4 +1,4 @@
-@extends('admin.layout')
+@extends('layouts.admin')
 @section('page-title', 'Вывод категорий')
 @section('content')
 <!-- Content Wrapper. Contains page content -->

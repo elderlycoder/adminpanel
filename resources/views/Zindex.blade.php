@@ -3,5 +3,5 @@
 @section('page-title', 'Страница входа')
 
 @section('content')
-<h1>Главная страница</h1>
+<h1>Главная страница3</h1>
 @endsection
