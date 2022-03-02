@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\User\StoreRequest;
+use App\Http\Requests\Admin\User\UpdateRequest;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\Image;
@@ -23,36 +25,28 @@ class UserController extends Controller
         return view('admin.users.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+   
+    public function store(StoreRequest $request)
     {
-        //
+        $data = $request->validated();
+        //dd($data);
+        $password = $data['password'];
+        $data['password'] = Hash::make($password);
+        $user = User::firstOrCreate(['email'=>$data['email']], $data);
+        $user->is_admin = $data['is_admin'];
+        $user->save();
+        return redirect()->route('admin.users.index');  
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $user = User::find($id);
         return view('admin.users.show', compact('user'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function edit(User $user){
+        return view('admin.users.edit', compact('user'));
+    }
+    public function editProfile($id)
     {
         $profile = Profile::find($id);
         $images = Image::where('user_id', $profile->user_id)
@@ -63,9 +57,17 @@ class UserController extends Controller
     }
 
     
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, User $user)
     {
-        //
+        $data = $request->validated();
+        //dd($data);
+        $password = $data['password'];
+        $data['password'] = Hash::make($password);
+        $user->update($data);
+        $user->is_admin = $data['is_admin'];
+        $user->save();
+       
+        return redirect()->route('admin.users.index'); 
     }
 
     /**

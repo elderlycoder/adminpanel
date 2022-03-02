@@ -1,11 +1,10 @@
 @extends('service.layout')
 @section('page-title', 'Страница пользователя')
 @section('content')
-<div class="content-wrapper">
    <!-- Content Header (Page header) -->
    <section class="content-header">
    <h1>
-      Привет! Это админка
+      Личный кабинет пользователя
    </h1>
    </section>
 

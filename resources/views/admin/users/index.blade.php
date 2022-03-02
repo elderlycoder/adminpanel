@@ -2,7 +2,7 @@
 @section('page-title', 'Пользователи')
 @section('content')
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>Выводим список пользователей</h1>
@@ -10,14 +10,16 @@
 
     <!-- Main content -->
     <section class="content">
+    <div class="container-fluid">
 
       <!-- Default box -->
-      <div class="box">
+      <div class="row">
         <div class="form-group">
-          <a href="{{route('users.create')}}" class="btn btn-success">Добавить</a>
+          <a href="{{route('admin.users.create')}}" class="btn btn-success">Добавить</a>
         </div>
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="col-12">
+            <div class="card">
               <h2>Пользователи</h2>
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
@@ -28,7 +30,7 @@
                   <!-- <th>email_verified_at</th> -->
                   
                   <th>is_admin</th>
-                  <th>Услуги</th>
+                  <th>Действия</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -39,9 +41,12 @@
                   <td>{{$user->email}}</td>
                   <td>{{$user->is_admin}}</td>
                   <!-- <td>{{$user->email_verified_at}}</td> -->
-                  <td><a href="{{route('users.edit', $user->profile->id)}}" class="fa fa-pencil">5</a></td>
-
-                  
+                  <td>
+                  @if ($user->profile)
+                  <a href="{{route('admin.users.edit', $user->profile->id)}}" class="fa fa-pencil">Профиль</a>
+                  @endif
+                  <a href="{{route('admin.users.edit', $user->id)}}"><i class="fas fa-edit"></i></a>
+                  </td>
                   
 
                    
@@ -53,12 +58,11 @@
             </div>
             <!-- /.box-body -->
           </div>
-      <!-- /.box -->
-
+        </div>
+      </div>
     </section>
     <!-- /.content -->
-  </div>
-  <!-- /.content-wrapper -->
+
 @endsection
 <!-- @section('script')
 <script type="text/javascript">

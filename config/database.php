@@ -43,7 +43,7 @@ return [
             'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
         ],
 
-        'mysql' => [
+        'mysql' => [  // adminpanel
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
@@ -63,7 +63,7 @@ return [
             ]) : [],
         ],
 
-        'mysql2' => [
+        'mysql2' => [ // okeyavto.ru
             'driver' => 'mysql',
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST_SECOND', 'okeyavto.ru'),
@@ -71,6 +71,44 @@ return [
             'database' => env('DB_DATABASE_SECOND', 'a0423034_okey'),
             'username' => env('DB_USERNAME_SECOND', 'a0423034_okey'),
             'password' => env('DB_PASSWORD_SECOND', 'dZHQW'),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8',
+            'collation' => 'utf8_general_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+        'mysql_kos' => [ // kostroma.okeyavto.ru 
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => 'kostroma.okeyavto.ru',
+            'port' => '3306',
+            'database' => 'a0423034_kostroma2',
+            'username' => 'a0423034_kostroma2',
+            'password' => 'wPiTlRcw',
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8',
+            'collation' => 'utf8_general_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+        'mysql_smol' => [ // smolensk 
+            'driver' => 'mysql',
+            'url' => env('DATABASE_URL'),
+            'host' => '127.0.0.1',
+            'port' => '3306',
+            'database' => 'smolensk',
+            'username' => 'root',
+            'password' => 'root',
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8',
             'collation' => 'utf8_general_ci',
