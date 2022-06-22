@@ -7,8 +7,14 @@
   <!-- Default box -->
   <div class="box">
    <div class="box-header">
-    <h2 class="box-title">Категории материалов</h2>
+    <h2 class="box-title">Обновлённые и новые материалы</h2>
    </div>
+   @if (session('error'))
+      <div class="alert alert-danger">{{ session('error') }}</div>
+      @endif
+      @if(Session::has('message'))
+<div class="alert alert-info">{{ Session::get('message') }}</div>
+@endif
    <!-- /.box-header -->
    <div class="box-body">   
     <table id="example1" class="table table-bordered table-striped">
@@ -48,10 +54,3 @@
 
 
 @endsection
-<!-- @section('script')
-<script type="text/javascript">
- $(document).ready(function(){
- alert(jQuery.fn.jquery);
- });
- </script>
-@endsection -->

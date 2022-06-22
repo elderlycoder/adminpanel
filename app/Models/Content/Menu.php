@@ -6,21 +6,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Content\ArticleCategory;
 
-class Article extends Model
+class Menu extends Model
 {
-    protected $table = "ok_content"; //привязываем таблицу к модели
+    protected $table = "ok_menu"; //привязываем таблицу к модели
     protected $connection = 'mysql_kos';
     //protected $primaryKey='virtuemart_product_id'; //название ключего поля отличается от стандартного 'id' поэтому указываем его специально
  //метод который связывает product с price один к одному
-   protected $fillable = ['title', 'alias', 'note', 'catid', 'fulltext', 'metadata', 'metadesc', 'metakey', 'state'];
+   protected $guarded = [];
    public $timestamps = false;
 
-   public function category(){
-      return $this->belongsTo(ArticleCategory::class, 'catid', 'id'); //второй параметр внешний ключ в таблице подчинённой модели
+   public function types(){
+      return $this->belongsTo(MenuType::class, 'menutype', 'menutype'); //второй параметр внешний ключ в таблице подчинённой модели
    // третий парметр ключ первичный ключ родительской модели (ArticleCategory)
    } 
 
-   public function asset(){
-      return $this->belongsTo(Asset::class, 'asset_id');
-   }
+   // public function asset(){
+   //    return $this->belongsTo(Asset::class, 'asset_id');
+   // }
 }

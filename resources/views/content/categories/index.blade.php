@@ -9,7 +9,12 @@
    <div class="box-header">
     <h2 class="box-title">Категории материалов</h2>
    </div>
-   <!-- /.box-header -->
+  <div>
+    
+  @if(Session::has('message'))
+<div class="alert {{ Session::get('alert-info') }}">{{ Session::get('message') }}</div>
+@endif
+  </div>
    <div class="box-body">   
     <table id="example1" class="table table-bordered table-striped">
      <thead>
@@ -20,6 +25,7 @@
        <th>path</th>
        <th>parent_id</th>
        <th>note</th>
+       <th>Кол-во статей</th>
        <th>published</th>
       </tr>
      </thead>
@@ -27,10 +33,11 @@
       @foreach($categories as $category)
       <tr>
        <td>{{$category->id}}</td>
-       <td><a href="{{route('content.categories.show', $category->id)}}">{{$category->title}}</a></td>
+       <td><a href="{{route('content.categories.copy', $category->id)}}">{{$category->title}}</a></td>
        <td>{{$category->alias}}</td>
        <td>{{$category->path}}</td>
        <td>{{$category->parent_id}}</td>
+       <td>{{$category->note}}</td>
        <td>{{$category->articles_count}}</td>
        <td>{{$category->published}}</td>
       </tr>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\Content\CategoriesController;
 use App\Http\Controllers\Admin\Content\ArticlesController;
+use App\Http\Controllers\Admin\Content\NewArticlesController;
 //use App\Http\Controllers\Admin\Content\CategoriesController;
 use Illuminate\Support\Facades\Route;
 //use App\Http\Controllers\IndexController;
@@ -20,14 +21,32 @@ Route::group(['prefix'=>'ceo', 'namespace'=>'Admin', 'middleware'=>['auth', 'adm
         
     });
     Route::group(['prefix'=>'content'], function(){
-        Route::get('/articles', [ArticlesController::class, 'updatedArticlesList'])->name('content.articles.updated');
+        Route::group(['prefix'=>'articles'], function(){
+            Route::get('/', [ArticlesController::class, 'articlesList'])->name('content.articles.index');
+            Route::get('/{article}', [ArticlesController::class, 'showArticle'])->name('content.article.show'); 
+            Route::patch('/{article}/updatesend', [ArticlesController::class, 'send'])->name('content.article.updatedsend');
+        });
+        Route::group(['prefix'=>'categories'], function(){
+            Route::get('/', [CategoriesController::class, 'index'])->name('content.categories.index');
+            Route::get('/{category}', [CategoriesController::class, 'show'])->name('content.categories.show');
+            Route::get('/copycategory/{category}', [CategoriesController::class, 'copy'])->name('content.categories.copy');
+        });
+        Route::group(['prefix'=>'menu'], function(){
+            Route::get('/', [App\Http\Controllers\Admin\Content\MenuController::class, 'index'])->name('content.menu.index');
+            Route::get('/{menu}', [App\Http\Controllers\Admin\Content\MenuController::class, 'show'])->name('content.menu.show');
+            Route::patch('/{menu}/copy', [App\Http\Controllers\Admin\Content\MenuController::class, 'copy'])->name('content.menu.copy');
+            Route::get('/{menutype}/show', [App\Http\Controllers\Admin\Content\MenuController::class, 'showMenuType'])->name('content.menu.showmenutype');
+            Route::patch('/{menutype}/copyMenuType', [App\Http\Controllers\Admin\Content\MenuController::class, 'copyMenuType'])->name('content.menu.copymenutype');
 
-        Route::get('/', [CategoriesController::class, 'index'])->name('content.categories.index');
-        Route::get('/{category}', [CategoriesController::class, 'show'])->name('content.categories.show');
-
-        Route::get('/articles/{article}', [ArticlesController::class, 'show'])->name('content.article.show');        
-        Route::patch('/articles/{article}/send', [ArticlesController::class, 'send'])->name('content.article.send');        
-        
+        });
+    });
+    Route::group(['prefix'=>'vm'], function(){
+        Route::group(['prefix'=>'categories'], function(){
+            Route::get('/', [App\Http\Controllers\Admin\VM\VMCategoryController::class, 'index'])->name('admin.vm.categories.index');
+            Route::get('/new', [App\Http\Controllers\Admin\VM\VMCategoryController::class, 'new'])->name('admin.vm.categories.new');
+            Route::get('/new/{category}/show', [App\Http\Controllers\Admin\VM\VMCategoryController::class, 'show'])->name('admin.vm.categories.show');
+            Route::patch('/new/{category}/copy', [App\Http\Controllers\Admin\VM\VMCategoryController::class, 'copy'])->name('admin.vm.categories.copy');
+        });
     });
     
     Route::resource('/categories', 'CategoriesController');
@@ -59,8 +78,9 @@ Route::group(['middleware'=>'auth'], function(){
 
 //Route::view('/', 'index')->name('home');
 
-Route::get('/product/all', 'ProductController@index')->name('products-list');
-Route::get('/products/{product}', 'ProductController@getProductFromId')->name('product-from-id');
+// Route::get('/product/all', 'ProductController@index')->name('products-list');
+// Route::get('/products/{product}', 'ProductController@getProductFromId')->name('product-from-id');
+// Route::get('/products/category/{id}', 'ProductController@getProductCategory')->name('productscategory');
 
 Auth::routes();
 

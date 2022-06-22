@@ -12,10 +12,14 @@ class ArticleCategory extends Model
     protected $connection = 'mysql_kos';
    protected $primaryKey='id'; //название ключего поля отличается от стандартного 'id' поэтому указываем его специально
  //метод который связывает product с price один к одному
-   protected $fillable = ['parent_id', 'path', 'title', 'alias', 'note', 'published'];
+   protected $guarded = [];
    public $timestamps = false;
 
    public function articles(){
       return $this->hasMany(Article::class, 'catid');
+   }
+
+   public function asset(){
+      return $this->belongsTo(Asset::class, 'asset_id');
    }
 }

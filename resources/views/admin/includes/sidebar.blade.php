@@ -41,21 +41,16 @@
 				                </a>
 				              </li>
 				              <li class="nav-item">
-				                <a href="{{route('content.articles.updated')}}" class="nav-link">
+				                <a href="{{route('content.articles.index')}}" class="nav-link">
 				                  <i class="far fa-circle nav-icon"></i>
 				                  <p>Обновлённые материалы</p>
 				                </a>
-				                
+																			</li>	
+				                  
 				                  <li class="nav-item">
-				                    <a href="#" class="nav-link">
-				                      <i class="far fa-dot-circle nav-icon"></i>
-				                      <p>Level 3</p>
-				                    </a>
-				                  </li>
-				                  <li class="nav-item">
-				                    <a href="#" class="nav-link">
-				                      <i class="far fa-dot-circle nav-icon"></i>
-				                      <p>Level 3</p>
+				                    <a href="{{route('content.menu.index')}}" class="nav-link">
+				                      <i class="far fa-circle nav-icon"></i>
+				                      <p>Menu</p>
 				                    </a>
 				                  </li>
 				                  <li class="nav-item">
@@ -74,7 +69,50 @@
 				              </li>
 				            </ul>
 				          	</li>
-
+															<li class="nav-item">
+				            <a href="#" class="nav-link">
+				              <i class="nav-icon fas fa-circle"></i>
+				              <p>
+				                VM
+				                <i class="right fas fa-angle-left"></i>
+				              </p>
+				            </a>
+				            <ul class="nav nav-treeview">
+				              <li class="nav-item">
+																		<a href="{{route('admin.vm.categories.index')}}" class="nav-link">
+				                  <i class="far fa-circle nav-icon"></i>
+				                  <p>Категории</p>
+				                </a>
+				              </li>
+				              <li class="nav-item">
+				                <a href="{{route('admin.vm.categories.new')}}" class="nav-link">
+				                  <i class="far fa-circle nav-icon"></i>
+				                  <p>Новые категории</p>
+				                </a>
+																			</li>	
+				                  
+				                  <li class="nav-item">
+				                    <a href="{{route('content.menu.index')}}" class="nav-link">
+				                      <i class="far fa-circle nav-icon"></i>
+				                      <p>Menu</p>
+				                    </a>
+				                  </li>
+				                  <li class="nav-item">
+				                    <a href="#" class="nav-link">
+				                      <i class="far fa-dot-circle nav-icon"></i>
+				                      <p>Level 3</p>
+				                    </a>
+				                  </li>
+				               
+				              </li>
+				              <li class="nav-item">
+				                <a href="#" class="nav-link">
+				                  <i class="far fa-circle nav-icon"></i>
+				                  <p>Level 2</p>
+				                </a>
+				              </li>
+				            </ul>
+				          	</li>
             </ul>
 									</div>	
          <!-- /.sidebar -->

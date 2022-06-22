@@ -3,15 +3,18 @@
 @section('content')
 
 <section class="content">
- <a href="{{route('content.article.send', $article->id)}}">Ссылка</a>
+ 
       <div class="container-fluid">
         <!-- Small boxes (Stat box) -->
-        <form action="{{route('content.article.send', $article->id)}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('content.article.updatedsend', $article->id)}}" method="POST" enctype="multipart/form-data">
         <div class="row">          
           <div class="col-12">
 			      <form action="#" method="POST" enctype="multipart/form-data">
 				      @csrf
               @method('PATCH') 
+              <div class="form-group">
+                  <input type="submit" class="btn btn-primary"></input>
+                  </div>
               <div class="form-group col-4">
                     <label for="title">Название</label>
                     <input type="text" class="form-control" name="title"  value={{$article->title}}>
@@ -36,9 +39,7 @@
                     <label for="title">Metadata</label>
                     <textarea class="form-control" name="metadata">{{$article->metadata}}</textarea>
                 </div>
-                  <div class="form-group">
-                  <input type="submit" class="btn btn-primary"></input>
-                  </div>
+                  
             </form>
           </div>
         </div>

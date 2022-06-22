@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::get('favorit-parts.ru/hs/hsprice/?key=84CF3558-FF69-11E7-8130-0050568E1762&number={sku}&brand={mpn}&analogues=off', [App\Http\Controllers\ProductController::class, 'getFreshPriceProduct'])
+->name('product.refresh');
+// Route::get('favorit-parts.ru/hs/hsprice/?key=84CF3558-FF69-11E7-8130-0050568E1762&number={sku}&brand={mpn}&analogues=off', function(){return 'hello';})
+	
+//  ->name('product.refresh');

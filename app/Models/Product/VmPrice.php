@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Product;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -12,6 +12,9 @@ class VmPrice extends Model
     public $timestamps = false;
 
     public function product(){
-        return $this->belongsTo(Product::class, 'virtuemart_product_id', 'virtuemart_product_id');
+        return $this->belongsTo(VMProductru::class, 'virtuemart_product_id', 'virtuemart_product_id');
+    }
+    public function vmproduct(){
+        return $this->belongsTo(VMProductru::class, 'virtuemart_product_id', 'virtuemart_product_id');
     }
 }
